@@ -10,7 +10,7 @@ MAIN_PROG CODE                      ; let linker place main program
 i equ 0x30
 j equ 0x31
 k equ 0x32
-m equ 0x33
+cont equ 0x33
 
 START
 
@@ -32,8 +32,8 @@ START
     CLRF PORTC
     CLRF PORTD
     CLRF PORTE
-    MOVLW D'30'
-    MOVWF m
+    MOVLW d'30'
+    MOVWF cont
     
 INICIO
     
@@ -44,12 +44,13 @@ INICIO
     MOVLW B'00011000'
     MOVWF PORTD
     CALL TIEMPO
+    CALL TIEMPO
+    CALL TIEMPO
     
-    
-    DECFSZ m, 1
+    DECFSZ cont, 1
     GOTO LETRAI
-    MOVLW D'30'
-    MOVWF m
+    MOVLW d'30'
+    MOVWF cont
     
     LETRAM:
     
@@ -89,10 +90,10 @@ INICIO
     MOVWF PORTD
     CALL TIEMPO
     
-    DECFSZ m, 1
+    DECFSZ cont, 1
     GOTO LETRAM
     MOVLW D'30'
-    MOVWF m
+    MOVWF cont
     
     LETRAS:
     
@@ -126,10 +127,10 @@ INICIO
     MOVWF PORTD
     CALL TIEMPO
     
-    DECFSZ m, 1
+    DECFSZ cont, 1
     GOTO LETRAS
     MOVLW D'30'
-    MOVWF m
+    MOVWF cont
     
     GOTO INICIO
     
